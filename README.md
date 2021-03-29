@@ -5,9 +5,10 @@ This repository is the official open source implementation of the paper: [TrojDR
 TrojDRL is a method of installing backdoors on Deep Reinforcement Learning Agents for discrete actions trained by Advantage Actor-Critic methods.
 
 ### Installation
-- The implementation is based on the [```paac```](https://github.com/Alfredvc/paac) (Parallel Advantage Actor-Critic) method from the [Efficient Parallel Methods for Deep Reinforcement Learning](https://arxiv.org/pdf/1705.04862.pdf) that uses Tensorflow 1.13.1.
+- The implementation is based on the [```paac```](https://github.com/Alfredvc/paac) (Parallel Advantage Actor-Critic) method from the [Efficient Parallel Methods for Deep Reinforcement Learning](https://arxiv.org/pdf/1705.04862.pdf) that uses Tensorflow 1.13.1 and the [```Arcade Learning Environment```](https://github.com/mgbellemare/Arcade-Learning-Environment).
 -  We recommend installing the dependencies using the env.yml 
 	- Install [anaconda](https://docs.anaconda.com/anaconda/install/)
+    - Install the [Arcade Learning Environment](https://github.com/mgbellemare/Arcade-Learning-Environment)
 	- Open [env.yml](https://github.com/pkiourti/rl_backdoor/blob/master/env.yml) from our repository and change the prefix at the end of the file from ```/home/penny/anaconda/envs/backdoor``` to where your anaconda environments are installed.
 	- Run ```conda env create -f env.yml```
 
