@@ -21,7 +21,9 @@ class Evaluator(object):
         self.checkpoint = os.path.join(args.folder, 'checkpoints', 'checkpoint-' + str(args.index))
         self.noops = args.noops
         self.poison = args.poison
-        self.pixels_to_poison = args.pixels_to_poison
+        self.pixels_to_poison_h = args.pixels_to_poison_h
+        self.pixels_to_poison_v = args.pixels_to_poison_v
+        self.start_position = args.start_position
         self.color = args.color
         self.action = args.action
         self.test_count = args.test_count
@@ -153,11 +155,13 @@ class Evaluator(object):
         return np.eye(self.num_actions)[action_indices]
 
     def poison_states(self, env_index):
-        for p in range(self.pixels_to_poison):
-            for q in range(self.pixels_to_poison):
-                self.states[env_index, p, q, -1] = self.color
+        x_start = self.start_position[0]
+        y_start = self.start_position[1]
+        for i in range(x_start, x_start + self.pixels_to_poison_h):
+            for j in range(y_start, y_start + self.pixels_to_poison_v):
+                self.states[env_index, i, j, -1] = self.color
                 frame = self.environments[env_index].get_rgb_screen()
-                frame[p, q] = self.color
+                frame[i, j] = self.color
                 self.rgb_states[env_index] = frame
         if not self.episodes_over[env_index]:
             self.total_poisoning[env_index] += 1

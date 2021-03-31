@@ -37,8 +37,6 @@ def get_arg_parser():
                        help="Start poisoning at a random state until the next poison_some states.", dest="poison_some")
 
     parser.add_argument('--index', default=None, type=int, help="load a specific model", dest="index", required=True)
-    parser.add_argument('--pixels_to_poison', default=3, type=int, help="pixels that will be poisoned",
-                        dest="pixels_to_poison")
     parser.add_argument('--store', default=False, type=bool_arg, 
                         help="Whether to store all the states and actions to an npy file", dest="store")
     parser.add_argument('--store_name', default='game', type=str, 
@@ -57,7 +55,8 @@ if __name__ == '__main__':
             parser.error("At least one of the following arguments is required: window, poison_randmly, poison_some")
     arg_file = os.path.join(args.folder, 'args.json')
     for k, v in logger_utils.load_args(arg_file).items():
-        if k in ['game', 'rom_path', 'arch', 'visualize', 'gym', 'gym_env']:
+        if k in ['game', 'rom_path', 'arch', 'visualize', 'gym', 'gym_env', 
+                 'pixels_to_poison_h', 'pixels_to_poison_v', 'start_position']:
             setattr(args, k, v)
 
     args.random_start = False
